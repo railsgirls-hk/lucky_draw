@@ -37,9 +37,6 @@ Admin
 
 3. You have to setup the following five environment variables (or heroku config) to start using this:
 
+    FB_APP_ID, FB_APP_SECRET, PUSHER_APP_ID, PUSHER_APP_KEY, PUSHER_APP_SECRET
 
-    FB_APP_ID=
-    FB_APP_SECRET=
-    PUSHER_APP_ID=
-    PUSHER_APP_KEY=
-    PUSHER_APP_SECRET=
+you can refer to .env-sample for reference
