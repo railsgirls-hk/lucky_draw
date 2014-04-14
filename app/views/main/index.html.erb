@@ -1,0 +1,106 @@
+<div class="row">
+  <div class="centered" style="text-align: center">
+    <h1>Rails Girls Lucky Draw</h1>
+
+    <% if current_user %>
+      <h2>You have signed in already.<br/>Wait for the lucky draw !</h2>
+    <% else %>
+      <div class="large primary btn">
+        <%= link_to "Sign in with Facebook and Join Lucky Draw", user_omniauth_authorize_path(:facebook) %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<% if current_user && current_user.is_admin? %>
+  <div>&nbsp;</div>
+
+  <div class="row">
+    <div class="centered" style="text-align: center">
+      <span class="medium primary btn">
+        <a id="btn-start" href="#">Draw Now</a>
+      </span>
+    </div>
+    <div>&nbsp;</div>
+    <div class="centered" style="text-align: center">
+      <span class="medium primary btn">
+        <a id="btn-reset" href="#">Reset</a>
+      </span>
+    </div>
+  </div>
+
+  <hr/>
+<% end %>
+
+<div class="hide section" id="drawing">
+
+  <h2 id="drawing-message">
+    DRAWING ...
+  </h2>
+  <div id="winner">
+  </div>
+
+  <hr/>
+</div>
+<div class="row section">
+  <div class="twelve centered column">
+    <div class="users section">
+      <% @users.each do |user| %>
+        <div class="user-slot" id="user-<%= user.id %>">
+          <div class="user-name"><%= user.name %></div>
+          <%= image_tag user.profile_image_url %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  // Enable pusher logging - don't include this in production
+  Pusher.log = function(message) {
+    if (window.console && window.console.log) {
+      window.console.log(message);
+    }
+  };
+
+  var pusher = new Pusher('094446770e4f7326bd6b');
+  var channel = pusher.subscribe('lucky_draw');
+  channel.bind('started', function(data) {
+    $('#drawing').show();
+    $('#drawing-message').html('Drawing ...');
+    handle = setInterval(shuffle, 100);
+  });
+
+  channel.bind('finished', function(data) {
+    $("#user-" + data.selected).addClass("selected");
+    $('#winner').html($("#user-" + data.selected).clone());
+    $('#drawing-message').html('Winner');
+    clearInterval(handle);
+  });
+
+  channel.bind('reseted', function(data) {
+    $(".user-slot").removeClass("selected");
+    $('#drawing').hide();
+  });
+
+  var handle;
+
+  $("#btn-start").on('click', function(event) {
+    $.get("/rotate/index");
+    event.preventDefault();
+  });
+
+  $("#btn-reset").on('click', function(event) {
+    $.get("/rotate/reset");
+    event.preventDefault();
+  });
+
+  function shuffle() {               // pass the divs to the function
+    var e = $('.users > div');
+    var replace = $('<div>');
+    var size = e.size();
+
+    var rand = Math.floor(Math.random() * size);
+    $('#winner').html($(e[rand]).clone());
+  }
+</script>

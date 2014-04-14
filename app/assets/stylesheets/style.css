@@ -1,0 +1,56 @@
+/*
+We highly recommend you use SASS and write your custom styles in sass/_custom.scss.
+However, this blank file is available if you prefer
+*/
+
+.users {
+  clear: both;
+}
+
+.user-name {
+  margin-top: 35px;
+}
+
+.user-slot {
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  border: solid 5px #999;
+  border-radius: 100%;
+  float: left;
+}
+
+.selected {
+  border: solid 5px #F00;
+}
+
+#drawing-message {
+  text-align: center;
+}
+
+#winner {
+  width: 350px;
+  margin: 0 auto;
+  clear: both;
+}
+
+#winner .user-name {
+  margin-top: 100px;
+  font-size: 2em;
+  text-align: center;
+}
+
+#winner .user-slot {
+  width: 350px;
+  height: 350px;
+  float: none;
+}
+
+#winner img {
+  width: 100px;
+  height: 100px;
+}
+
+.section {
+  margin: 30px 0px;
+}
