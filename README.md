@@ -28,7 +28,8 @@ Game Flow
 ![Admin Page Lucky Draw Result](./03_admin_draw_result.png "Lucky Draw Result In All Browsers In Real Time")
 
 
-== Admin
+Admin
+============================
 
 1. You can change your user account to admin account by changing the is_admin value to true.
 
