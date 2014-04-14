@@ -7,6 +7,10 @@ Real Time Lucky Draw Website
 
 3. Only Admin user can start a lucky draw.
 
+Reference for the attendees view:
+
+[Rails Girls Lucky Draw on Heroku](http://railsgirlshk-luckydraw.herokuapp.com/)
+
 
 Game Flow
 ============================

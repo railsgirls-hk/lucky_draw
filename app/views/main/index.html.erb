@@ -47,8 +47,8 @@
     <div class="users section">
       <% @users.each do |user| %>
         <div class="user-slot" id="user-<%= user.id %>">
-          <div class="user-name"><%= user.name %></div>
           <%= image_tag user.profile_image_url %>
+          <div class="user-name"><%= user.name %></div>
         </div>
       <% end %>
     </div>

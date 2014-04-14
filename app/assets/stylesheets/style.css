@@ -7,17 +7,31 @@ However, this blank file is available if you prefer
   clear: both;
 }
 
-.user-name {
-  margin-top: 35px;
-}
-
 .user-slot {
   width: 150px;
   height: 150px;
   text-align: center;
-  border: solid 5px #999;
-  border-radius: 100%;
   float: left;
+  position: relative;
+}
+
+.user-slot img {
+  width: 150px;
+  height: 150px;
+  border: solid 3px #999;
+  border-radius: 100%;
+  position: absolute;
+  left: 0px;
+}
+
+.user-slot .user-name {
+  width: 150px;
+  position: absolute;
+  left: 0px;
+  background-color: rgba(255, 255, 255, 0.6);
+  margin-top: 60px;
+  font-weight: bold;
+  color: #111;
 }
 
 .selected {
